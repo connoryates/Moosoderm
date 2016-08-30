@@ -1,10 +1,10 @@
-
+#!/usr/bin/env perl
 use strict;
 use warnings;
 
 use Test::More qw(no_plan);
 use Path::Class;
-use Mesoderm;
+use Moosoderm;
 use SQL::Translator;
 use Test::Differences;
 
@@ -16,7 +16,7 @@ foreach my $in (@tests) {
   my $sqlt = SQL::Translator->new(parser => 'MySQL',);
 
   $sqlt->translate({filename => $in});
-  my $scaffold = Mesoderm->new(
+  my $scaffold = Moosoderm->new(
     schema       => $sqlt->schema,
     schema_class => 'Schema',
   );

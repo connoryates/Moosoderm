@@ -4,5 +4,5 @@
 
 use strict;
 use warnings;
-use Mesoderm::Command;
-Mesoderm::Command->new_with_options->execute;
+use Moosoderm::Command;
+Moosoderm::Command->new_with_options->execute;

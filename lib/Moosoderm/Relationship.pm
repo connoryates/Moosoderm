@@ -1,9 +1,9 @@
 ## Copyright (C) Graham Barr
 ## vim: ts=8:sw=2:expandtab:shiftround
 
-package Mesoderm::Relationship;
+package Moosoderm::Relationship;
 
-use Moose;
+use Moo;
 
 has name            => (is => 'rw');
 has type            => (is => 'rw');
@@ -11,12 +11,19 @@ has accessor        => (is => 'rw');
 has table           => (is => 'rw', weak_ref => 1);
 has foreign_table   => (is => 'rw', weak_ref => 1);
 has _reciprocal     => (is => 'rw', weak_ref => 1);
-has columns         => (is => 'rw', isa => 'ArrayRef', auto_deref => 1, default => sub { [] });
-has foreign_columns => (is => 'rw', isa => 'ArrayRef', auto_deref => 1, default => sub { [] });
+has columns         => (
+    is         => 'rw',
+    auto_deref => 1,
+    default    => sub { [] }
+);
+has foreign_columns => (
+    is         => 'rw',
+    auto_deref => 1,
+    default => sub { [] }
+);
 has attrs => (
   traits  => ['Hash'],
   is      => 'ro',
-  isa     => 'HashRef[Str]',
   default => sub { {} },
   handles => {
     add_attr     => 'set',
@@ -28,7 +35,7 @@ has attrs => (
 sub _build_reciprocal {
   my $self = shift;
 
-  Mesoderm::Relationship->new(
+  Moosoderm::Relationship->new(
     name            => $self->foreign_table->name . "__" . $self->name,
     table           => $self->foreign_table,
     columns         => [$self->foreign_columns],

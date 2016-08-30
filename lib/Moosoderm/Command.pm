@@ -1,11 +1,11 @@
 ## Copyright (C) Graham Barr
 ## vim: ts=8:sw=2:expandtab:shiftround
 
-package Mesoderm::Command;
-use Moose;
-with 'MooseX::Getopt';
+package Moosoderm::Command;
+use Moo;
+with 'MooX::Getopt';
 
-use MooseX::Types::Path::Class qw(File);
+use Path::Class;
 use DBI;
 use SQL::Translator;
 use File::Temp;
@@ -14,30 +14,22 @@ use Path::Class;
 # STUPID check in perltidy
 sub File::Temp::print { print {shift} @_ }
 
-has [qw(user pass)] => (
-  traits => ['Getopt'],
+option [qw(user pass)] => (
   is     => 'rw',
-  isa    => 'Str',
 );
 
-has [qw(dsn schema_class)] => (
-  traits   => ['Getopt'],
+option [qw(dsn schema_class)] => (
   is       => 'rw',
-  isa      => 'Str',
   required => 1,
 );
 
-has scaffold_class => (
-  traits  => ['Getopt'],
+option scaffold_class => (
   is      => 'rw',
-  isa     => 'Str',
-  default => 'Mesoderm',
+  default => 'Moosoderm',
 );
 
-has output => (
-  traits  => ['Getopt'],
+option output => (
   is      => 'rw',
-  isa     => File,
   lazy    => 1,
   default => sub {
     my $self = shift;
@@ -47,10 +39,8 @@ has output => (
   },
 );
 
-has tidy => (
-  traits  => ['Getopt'],
+option tidy => (
   is      => 'rw',
-  isa     => 'Bool',
   default => 1,
 );
 

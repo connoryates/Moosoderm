@@ -1,26 +1,23 @@
 ## Copyright (C) Graham Barr
 ## vim: ts=8:sw=2:expandtab:shiftround
 
-package Mesoderm::Component;
-use Moose;
+package Moosoderm::Component;
+use Moo;
 
 our %Registry;
 our $Order = 0xffffffff;
 
 has 'name' => (
   is       => 'ro',
-  isa      => 'Str',
   required => 1,
 );
 
 has 'initializer' => (
   is  => 'ro',
-  isa => 'Str',
 );
 
 has 'order' => (
   is      => 'ro',
-  isa     => 'Int',
   default => sub { $Order-- },
 );
 
@@ -41,5 +38,6 @@ foreach my $name (qw! Core PK::Auto InflateColumn::DateTime CDBICompat !) {
 }
 
 __PACKAGE__->new(name => 'UTF8Columns', initializer => 'utf8_columns');
+
 1;
 

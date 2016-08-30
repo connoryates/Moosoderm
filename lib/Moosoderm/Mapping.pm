@@ -1,9 +1,9 @@
 ## Copyright (C) Graham Barr
 ## vim: ts=8:sw=2:expandtab:shiftround
 
-package Mesoderm::Mapping;
+package Moosoderm::Mapping;
 
-use Moose;
+use Moo;
 
 has name     => (is => 'rw');
 has accessor => (is => 'rw');
