@@ -16,6 +16,7 @@ object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
 
 ## Usage
 
+```perl
   use Moosoderm;
   use SQL::Translator;
   use DBI;
@@ -31,7 +32,7 @@ object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
   );
 
   $scaffold->produce(\*STDOUT);
-
+```
 
 ## License
 
