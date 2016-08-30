@@ -14,6 +14,25 @@ object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
   * Complete control over class and relationship names
   * Ability to have class model exclude any table, column or relationship
 
+## Usage
+
+  use Moosoderm;
+  use SQL::Translator;
+  use DBI;
+
+  my $dbh = DBI->connect($dsn, $user, $pass);
+
+  my $sqlt = SQL::Translator->new(dbh => $dbh, from => 'DBI');
+  $sqlt->parse(undef);
+
+  my $scaffold = Moosoderm->new(
+    schema       => $sqlt->schema,
+    schema_class => 'My::Schema',
+  );
+
+  $scaffold->produce(\*STDOUT);
+
+
 ## License
 
 This software is copyright (c) 2010-2011 by Graham Barr <gbarr@pobox.com>
