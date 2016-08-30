@@ -1,6 +1,6 @@
 # Moosoderm
 
-Generate DBIx::Class classes using Moo. Rework of Graham Barr's Mesoderm using Moo.
+Generate DBIx::Class classes using Moo. Rework of Graham Barr's [Mesoderm](https://github.com/gbarr/Mesoderm) using Moo.
 
 Moosoderm creates a scaffold of code for [DBIx::Class](http://search.cpan.org/perldoc?DBIx::Class) using a schema
 object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
