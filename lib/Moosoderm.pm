@@ -615,11 +615,11 @@ __END__
 
 =head1 NAME
 
-Mesoderm - Schema class scaffold generator for DBIx::Class
+Moosoderm - Schema class scaffold generator for DBIx::Class
 
 =head1 SYNOPSIS
 
-  use Mesoderm;
+  use Moosoderm;
   use SQL::Translator;
   use DBI;
 
@@ -628,7 +628,7 @@ Mesoderm - Schema class scaffold generator for DBIx::Class
   my $sqlt = SQL::Translator->new(dbh => $dbh, from => 'DBI');
   $sqlt->parse(undef);
 
-  my $scaffold = Mesoderm->new(
+  my $scaffold = Moosoderm->new(
     schema       => $sqlt->schema,
     schema_class => 'My::Schema',
   );
@@ -638,19 +638,19 @@ Mesoderm - Schema class scaffold generator for DBIx::Class
 
 =head1 DESCRIPTION
 
-C<Mesoderm> creates a scaffold of code for L<DBIx::Class> using a schema object from
+C<Moosoderm> creates a scaffold of code for L<DBIx::Class> using a schema object from
 L<SQL::Translator|http://github.com/arcanez/SQL-Translator>. At time of writing the version of
 L<SQL::Translator|http://github.com/arcanez/SQL-Translator> required is not available on CPAN and must be
 fetched directly from L<github|http://github.com/arcanez/SQL-Translator>.
 
-The result is a hierarchy of packages describes below. L<Moose> is used so that any custom methods
-needed to be added to the result or resultset classes can be done by writing L<Moose::Role> classes.
+The result is a hierarchy of packages describes below. L<Moo> is used so that any custom methods
+needed to be added to the result or resultset classes can be done by writing L<Moo::Role> classes.
 This allows separation between generated code and written code.
 
-C<Mesoderm> defines methods to map table names to class names, relationships and
+C<Moosoderm> defines methods to map table names to class names, relationships and
 columns to accessor methods. It is also possible to have any table, relationship or column
 excluded from the generated model. If the defaults do not meet your needs, then it is trvial to
-subclass C<Mesoderm> and provide overrides.
+subclass C<Moosoderm> and provide overrides.
 
 =head2 Package Hierarchy
 
@@ -665,7 +665,7 @@ Top level schema class. The user needs to provide this themselves. See L</Exampl
 
 =item Schema::_scaffold
 
-The main generated package that will be a L<Moose::Role> to be consumed into the top level schema
+The main generated package that will be a L<Moo::Role> to be consumed into the top level schema
 class. See L</The _scaffold Role>
 
 Although the model generated is a hierarchy of packages, it is expected that all generated
@@ -750,7 +750,7 @@ L<Moose::Role> with the named C<schema_class> plus C<::_scaffold>
 =item schema_method
 
 Name of method to generate that when called on any result row or result set
-will return the parent Mesoderm schema object.
+will return the parent Moosoderm schema object.
 Defaults to C<schema>
 
 =item result_class_namespace
@@ -901,19 +901,19 @@ Generate code and write to filehandle
 
 =item build_relationship ( $constraint )
 
-Build a L<Mesoderm::Relationship> object given a constraint
+Build a L<Moosoderm::Relationship> object given a constraint
 
 =item build_mapping ( $relationship, $relationship )
 
-Build a L<Mesoderm::Mapping> given relationship for a mant to many mapping
+Build a L<Moosoderm::Mapping> given relationship for a mant to many mapping
 
 =back
 
 =head1 SEE ALSO
 
 L<DBIx::Class>,
-L<Moose>,
-L<Moose::Role>,
+L<Moo>,
+L<Moo::Role>,
 L<SQL::Translator|http://github.com/arcanez/SQL-Translator>
 
 At time of writing the version required is not available on CPAN and needs
