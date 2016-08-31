@@ -16,7 +16,7 @@ use Moosoderm::Mapping;
 
 has 'schema' => (
   is       => 'ro',
-#  isa      => 'SQL::Translator::Schema',
+  isa      => InstanceOf['SQL::Translator::Schema'],
   required => 1,
 );
 
