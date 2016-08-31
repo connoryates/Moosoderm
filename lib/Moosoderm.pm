@@ -1,4 +1,5 @@
-## Copyright (C) Graham Barr
+## Original Author: Graham Barr
+## Adpated: Connor Yates
 ## vim: ts=8:sw=2:expandtab:shiftround
 ## ABSTRACT: Schema class scaffold generator for DBIx::Class
 
