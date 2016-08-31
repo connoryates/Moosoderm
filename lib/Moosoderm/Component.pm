@@ -3,21 +3,25 @@
 
 package Moosoderm::Component;
 use Moo;
+use MooX::Types::MooseLike::Base qw(:all);
 
 our %Registry;
 our $Order = 0xffffffff;
 
 has 'name' => (
   is       => 'ro',
+  isa      => Str,
   required => 1,
 );
 
 has 'initializer' => (
   is  => 'ro',
+  isa => Str,
 );
 
 has 'order' => (
   is      => 'ro',
+  isa     => Int,
   default => sub { $Order-- },
 );
 

@@ -5,6 +5,7 @@ use warnings;
 use SQL::Translator;
 use DBI;
 use FindBin qw/$RealBin/;
+use MooX::Types::MooseLike::Base qw(:all);
 
 use lib "$RealBin/../lib";
 use Moosoderm;
@@ -12,9 +13,9 @@ use Moosoderm;
 my ($dsn, $user, $pass) = "";
 
 my $dbh = DBI->connect(
-    $dsn,
-    $user,
-    $pass,
+    "DBI:Pg:database=dbtracker;host=dbtrackerdevdb.steamcourier.com;port=5439",
+    'broadbean',
+    "TK50z4ZkjOJoL",
     {
         RaiseError => 1,
         AutoCommit => 1,

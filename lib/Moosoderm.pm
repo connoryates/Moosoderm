@@ -4,8 +4,7 @@
 
 package Moosoderm;
 use Moo;
-
-use diagnostics;
+use MooX::Types::MooseLike::Base qw(:all);
 
 use Lingua::EN::Inflect::Number qw(to_S to_PL);
 use Data::Dumper;
@@ -16,45 +15,53 @@ use Moosoderm::Mapping;
 
 has 'schema' => (
   is       => 'ro',
+#  isa      => 'SQL::Translator::Schema',
   required => 1,
 );
 
 has 'schema_class' => (
   is       => 'ro',
+  isa      => Str,
   required => 1,
 );
 
 has 'schema_method' => (
   is      => 'ro',
-  default => 'schema',
+  isa     => Str,
+  default => sub { 'schema' },
 );
 
 has 'result_class_namespace' => (
   is      => 'ro',
+  isa     => Str,
   lazy    => 1,
   default => sub { shift->schema_class },
 );
 
 has 'resultset_class_namespace' => (
   is      => 'ro',
+  isa     => Str,
   lazy    => 1,
   default => sub { shift->result_class_namespace . "::ResultSet" },
 );
 
 has 'result_role_namespace' => (
   is      => 'ro',
+  isa     => Str,
   lazy    => 1,
   default => sub { shift->result_class_namespace . "::Role" },
 );
 
 has 'resultset_role_namespace' => (
   is      => 'ro',
+  isa     => Str,
   lazy    => 1,
   default => sub { shift->resultset_class_namespace . "::Role" },
 );
 
 has '_role_map' => (
   is         => 'ro',
+  isa        => HashRef,
   traits     => ['Hash'],
   handles    => {have_role => 'exists',},
   lazy       => 1,
@@ -126,6 +133,7 @@ sub column_info {
 
 has 'insert_defaults' => (
   is         => 'ro',
+  isa        => HashRef[Str],
   lazy_build => 1,
 );
 sub _build_insert_defaults { return {} }

@@ -4,6 +4,7 @@
 package Moosoderm::Relationship;
 
 use Moo;
+use MooX::Types::MooseLike::Base qw(:all);
 
 has name            => (is => 'rw');
 has type            => (is => 'rw');
@@ -12,18 +13,21 @@ has table           => (is => 'rw', weak_ref => 1);
 has foreign_table   => (is => 'rw', weak_ref => 1);
 has _reciprocal     => (is => 'rw', weak_ref => 1);
 has columns         => (
-    is         => 'rw',
-    auto_deref => 1,
-    default    => sub { [] }
+  is         => 'rw',
+  isa        => ArrayRef,
+  auto_deref => 1,
+  default    => sub { [] }
 );
 has foreign_columns => (
-    is         => 'rw',
-    auto_deref => 1,
-    default => sub { [] }
+  is         => 'rw',
+  isa        => ArrayRef,
+  auto_deref => 1,
+  default    => sub { [] }
 );
 has attrs => (
   traits  => ['Hash'],
   is      => 'ro',
+  isa     => HashRef[Str],
   default => sub { {} },
   handles => {
     add_attr     => 'set',

@@ -5,6 +5,7 @@ package Moosoderm::Command;
 use Moo;
 with 'MooX::Getopt';
 
+use MooX::Types::MooseLike::Base qw(:all);
 use Path::Class;
 use DBI;
 use SQL::Translator;
@@ -15,16 +16,19 @@ use Path::Class;
 sub File::Temp::print { print {shift} @_ }
 
 option [qw(user pass)] => (
-  is     => 'rw',
+  is   => 'rw',
+  isa  => Str,
 );
 
 option [qw(dsn schema_class)] => (
   is       => 'rw',
+  isa      => Str,
   required => 1,
 );
 
 option scaffold_class => (
   is      => 'rw',
+  isa     => Str,
   default => 'Moosoderm',
 );
 
@@ -41,6 +45,7 @@ option output => (
 
 option tidy => (
   is      => 'rw',
+  isa     => Bool,
   default => 1,
 );
 
