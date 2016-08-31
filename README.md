@@ -36,7 +36,4 @@ object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
 
 ## License
 
-This software is copyright (c) 2010-2011 by Graham Barr <gbarr@pobox.com>
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+Perl 5
