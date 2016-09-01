@@ -64,7 +64,6 @@ has '_role_map' => (
   is         => 'ro',
   isa        => HashRef,
   traits     => ['Hash'],
-  handles    => {have_role => 'exists',},
   lazy       => 1,
   builder    => '_build__role_map',
 );
@@ -95,13 +94,13 @@ sub resultset_components { return; }
 
 sub table_roles {
   my ($self, $table) = @_;
-  grep { defined $_ }
+  grep { $_ }
     $self->result_role_namespace . "::" . $self->table_class_element($table);
 }
 
 sub resultset_roles {
   my ($self, $table) = @_;
-    grep { defined $_ }
+   grep { $_ }
     $self->resultset_role_namespace . "::" . $self->table_class_element($table);
 }
 
