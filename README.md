@@ -5,6 +5,8 @@ Generate DBIx::Class classes using Moo. Rework of Graham Barr's [Mesoderm](https
 Moosoderm creates a scaffold of code for [DBIx::Class](http://search.cpan.org/perldoc?DBIx::Class) using a schema
 object from [SQL::Translator](http://github.com/arcanez/SQL-Translator).
 
+For when your project won't allow for Moose dependencies, but you still want a powerful database scaffold.
+
 ## Features
 
   * All generated code is in a single file
