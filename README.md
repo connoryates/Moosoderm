@@ -25,7 +25,7 @@ For when your project won't allow for Moose dependencies, but you still want a p
 
   my $dbh = DBI->connect($dsn, $user, $pass);
 
-  my $sqlt = SQL::Translator->new( parser_args { dbh => $dbh }, from => 'DBI');
+  my $sqlt = SQL::Translator->new( parser_args => { dbh => $dbh }, from => 'DBI');
   $sqlt->parse(undef);
 
   my $scaffold = Moosoderm->new(
